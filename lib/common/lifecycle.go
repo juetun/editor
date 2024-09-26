@@ -81,19 +81,19 @@ func MakeNav(setTutorial func(tutorial tutorials.Tutorial), loadPrevious bool) f
 
 	themes := container.NewGridWithColumns(3,
 		widget.NewButton("Dark", func() {
-			a.Settings().SetTheme(&forcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantDark})
+			a.Settings().SetTheme(&ForcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantDark})
 		}),
 		widget.NewButton("Light", func() {
-			a.Settings().SetTheme(&forcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantLight})
+			a.Settings().SetTheme(&ForcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantLight})
 		}), widget.NewButton("Light", func() {
-			a.Settings().SetTheme(&forcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantLight})
+			a.Settings().SetTheme(&ForcedVariant{Theme: theme.DefaultTheme(), variant: theme.VariantLight})
 		}),
 	)
 
 	return container.NewBorder(nil, themes, nil, nil, tree)
 }
 
-func shortcutFocused(s fyne.Shortcut, w fyne.Window) {
+func ShortcutFocused(s fyne.Shortcut, w fyne.Window) {
 	switch sh := s.(type) {
 	case *fyne.ShortcutCopy:
 		sh.Clipboard = w.Clipboard()
@@ -107,11 +107,11 @@ func shortcutFocused(s fyne.Shortcut, w fyne.Window) {
 	}
 }
 
-type forcedVariant struct {
+type ForcedVariant struct {
 	fyne.Theme
 	variant fyne.ThemeVariant
 }
 
-func (f *forcedVariant) Color(name fyne.ThemeColorName, _ fyne.ThemeVariant) color.Color {
+func (f *ForcedVariant) Color(name fyne.ThemeColorName, _ fyne.ThemeVariant) color.Color {
 	return f.Theme.Color(name, f.variant)
 }
