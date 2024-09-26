@@ -14,6 +14,7 @@ var (
 	BaseDirect string
 	ExecPath   = ""
 	AppInfo    *Application
+	Io         = utils.NewSystemOut().SetInfoType(utils.LogLevelInfo)
 )
 
 type Application struct {
@@ -22,8 +23,6 @@ type Application struct {
 	AppName    string `json:"app_name" yaml:"name"`       // 应用名称
 	AppVersion string `json:"app_version" yaml:"version"` // 应用版本以前缀v 开头
 }
-
-var io = utils.NewSystemOut().SetInfoType(utils.LogLevelInfo)
 
 //加载配置文件
 func LoadConfig(file string) (err error) {
@@ -38,7 +37,7 @@ func LoadConfig(file string) (err error) {
 	if yamlFile, err = os.ReadFile(filePath); err != nil {
 	}
 	if err = yaml.Unmarshal(yamlFile, AppInfo); err != nil {
-		io.SystemOutFatalf("load app config err(%#v) \n", err)
+		Io.SystemOutFatalf("load app config err(%#v) \n", err)
 	}
 	return
 }
@@ -61,7 +60,7 @@ func GetConfigFileDirectory(notEnv ...bool) (res string) {
 	if BaseDirect == "" {
 		if ExecPath == "" {
 			if dir, err = os.Getwd(); err != nil {
-				io.SystemOutPrintf("Template GetConfigFileDirectory is :'%s'", res)
+				Io.SystemOutPrintf("Template GetConfigFileDirectory is :'%s'", res)
 			}
 		}
 
