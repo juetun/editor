@@ -1,0 +1,5 @@
+app:
+  appid: "com.juetun.app"
+  env: ""
+  name: "juetun" #应用名称
+  version: "1.0.0" #应用版本
