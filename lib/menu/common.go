@@ -73,12 +73,12 @@ func makeMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 	cutItem.Shortcut = cutShortcut
 	copyShortcut := &fyne.ShortcutCopy{Clipboard: w.Clipboard()}
 	copyItem := fyne.NewMenuItem("Copy11", func() {
-		common.ShortcutFocused((copyShortcut, w)
+		common.ShortcutFocused(copyShortcut, w)
 	})
 	copyItem.Shortcut = copyShortcut
 	pasteShortcut := &fyne.ShortcutPaste{Clipboard: w.Clipboard()}
 	pasteItem := fyne.NewMenuItem("Paste12", func() {
-		common.ShortcutFocused((pasteShortcut, w)
+		common.ShortcutFocused(pasteShortcut, w)
 	})
 	pasteItem.Shortcut = pasteShortcut
 	performFind := func() { fmt.Println("Menu Find13") }
