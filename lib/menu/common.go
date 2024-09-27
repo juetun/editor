@@ -1,11 +1,13 @@
 package menu
 
 import (
+	"fmt"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/cmd/fyne_settings/settings"
 	"fyne.io/fyne/v2/driver/desktop"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/editor/lib/common"
 	"github.com/editor/lib/menu/edit"
 	"github.com/editor/lib/menu/file"
 	"github.com/editor/lib/menu/help"
@@ -66,17 +68,17 @@ func makeMenu(a fyne.App, w fyne.Window) *fyne.MainMenu {
 
 	cutShortcut := &fyne.ShortcutCut{Clipboard: w.Clipboard()}
 	cutItem := fyne.NewMenuItem("Cut", func() {
-		shortcutFocused(cutShortcut, w)
+		common.ShortcutFocused(cutShortcut, w)
 	})
 	cutItem.Shortcut = cutShortcut
 	copyShortcut := &fyne.ShortcutCopy{Clipboard: w.Clipboard()}
 	copyItem := fyne.NewMenuItem("Copy11", func() {
-		shortcutFocused(copyShortcut, w)
+		common.ShortcutFocused((copyShortcut, w)
 	})
 	copyItem.Shortcut = copyShortcut
 	pasteShortcut := &fyne.ShortcutPaste{Clipboard: w.Clipboard()}
 	pasteItem := fyne.NewMenuItem("Paste12", func() {
-		shortcutFocused(pasteShortcut, w)
+		common.ShortcutFocused((pasteShortcut, w)
 	})
 	pasteItem.Shortcut = pasteShortcut
 	performFind := func() { fmt.Println("Menu Find13") }
